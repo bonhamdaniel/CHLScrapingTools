@@ -1,0 +1,23 @@
+GoalsScrape.py can be used to scrape goal data from specified game scorer sheets and insert that data into a specified database table.  
+
+The data that is specified for each goal is coded to be written into a new record of the 'Goal' table, with the following columns:
+- GameID
+- GoalID
+- GameTime
+- AwayGoals
+- HomeGoals
+- Team
+- GameSituation
+- Scorer
+- Primary
+- Secondary
+- GF1
+- GF2
+- GF3
+- GF4
+- GF5
+- GA1
+- GA2
+- GA3
+- GA4
+- GA5
