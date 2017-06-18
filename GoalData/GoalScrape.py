@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+import sys
 import requests
 import pyodbc
 import GoalSummary
@@ -153,24 +154,38 @@ def scrape(game_num):
 		cursor.execute(sql, params)
 		connection.commit()
 
-db_file = 'QMJHL.accdb'
-conn_str = ("DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/PythonPrograms/QMJHL/" + db_file + ";")
+league = sys.argv[1]
+db_file = league + '.accdb'
+conn_str = ("DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/PythonPrograms/" + league + "/" + db_file + ";")
 connection = pyodbc.connect(conn_str)
 cursor = connection.cursor()
 
-# QMJHL Games Include: 49 - 26383
+if league in 'OHL' or league in 'WHL':
+	league = league.lower()
+elif league in 'QMJHL':
+	league = 'lhjmq'
+
+print(league)
+
+# WHL Games Include:  20881 - 27661,  - 1014412
+# Done: 20000 - 
+# QMJHL Games Include: 49 - 25678
 # Done: 49-3705
 # Errors on official scorers sheet:
 #	2156/2157 - references Ottawa player #5, who doesn't exist, as on-ice for several goals
 #	3706 - references Cape Breton player #25, who doesn't exist, as on-ice for several goals
-for game_num in range(3707, 26383):
-	gamesheet = 'http://cluster.leaguestat.com/game_reports/official-game-report.php?client_code=lhjmq&game_id=' + str(game_num) + '&lang=en'
+for game_num in range(int(sys.argv[2]), int(sys.argv[3])+1):
+	gamesheet = 'http://cluster.leaguestat.com/game_reports/official-game-report.php?client_code=' + league + '&game_id=' + str(game_num) + '&lang=en'
 	page = requests.get(gamesheet)
 	soup = BeautifulSoup(page.text, 'html.parser')
+
+	#active = []
+	#print(sys.argv[1], sys.argv[2])
 
 	all_tables = soup.find_all("table")
 	if len(all_tables) > 1:
 		print(game_num)
+		#active.append(game_num)
 		scrape(game_num)
 
 connection.close()
