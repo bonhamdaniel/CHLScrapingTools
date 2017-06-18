@@ -1,4 +1,4 @@
-GoalsScrape.py can be used to scrape goal data from specified game scorer sheets and insert that data into a specified database table.  
+GoalScrape.py can be used to scrape goal data from specified game scorer sheets and insert that data into a specified database table.  
 
 The script requires installing BeautifulSoup, requests and pyodbc, which can be found at the locations specified below:
 - https://www.crummy.com/software/BeautifulSoup/
@@ -14,3 +14,5 @@ The data that is accumulated for each goal is coded to be written into a new rec
 
 *Issues with league supplied scorer sheets for GameID's:
 - WHL: 1009871, 1010377, 1010576, 1010833, 1010851 (non-existant player marked as on-ice for goal event)
+
+GoalScrapeKeyError.py can be used to handle games with the non-existent player error.  It has built in error handling to account for the KeyErrors that are encountered with these erroneous scorer sheets.  Its usage is: python GoalScrapeKeyError.py [league] [GameID].
