@@ -14,5 +14,6 @@ The data that is accumulated for each goal is coded to be written into a new rec
 
 *Issues with league supplied scorer sheets for GameID's:
 - WHL: 1009871, 1010377, 1010576, 1010833, 1010851 (non-existant player marked as on-ice for goal event)
+- OHL: 5286, 5288, 10631 (All-Star games with incomplete scorer sheets)
 
 GoalScrapeKeyError.py can be used to handle games with the non-existent player error.  It has built in error handling to account for the KeyErrors that are encountered with these erroneous scorer sheets.  Its usage is: python GoalScrapeKeyError.py [league] [GameID].
