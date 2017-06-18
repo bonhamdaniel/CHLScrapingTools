@@ -8,5 +8,4 @@ The script requires installing BeautifulSoup, requests and pyodbc, which can be 
 Usage (at command line): python GameScrape.py [league] [starting GameID] [ending GameID]
 
 The data that is accumulated for each game is coded to be written into a new record of a 'Game' table present in a database named after the league specified at the command line, with the following column entries:
-
-GameID, GameDate, Visitor, Home, VisitorGoal, HomeGoals, OT, SO
+- GameID, GameDate, Visitor, Home, VisitorGoal, HomeGoals, OT, SO
