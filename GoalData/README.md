@@ -7,24 +7,10 @@ The script requires installing BeautifulSoup, requests and pyodbc, which can be 
 
 The script also requires a python class called GoalSummary, which I have written to simplify accumulating the scraped data for each goal event.  This file is included in the GoalData folder.
 
-The data that is accumulated for each goal is coded to be written into a new record of a 'Goal' table present in a database named 'QMJHL', with the following column entries:
-- GameID
-- GoalID
-- GameTime
-- AwayGoals
-- HomeGoals
-- Team
-- GameSituation
-- Scorer
-- Primary
-- Secondary
-- GF1
-- GF2
-- GF3
-- GF4
-- GF5
-- GA1
-- GA2
-- GA3
-- GA4
-- GA5
+Usage (at command line): python GoalScrape.py [league] [starting GameID] [ending GameID] 
+
+The data that is accumulated for each goal is coded to be written into a new record of a 'Goal' table present in a database named after the league specified at the command line, with the following column entries:
+- GameID, GoalID, GameTime, AwayGoals, HomeGoals, Team, GameSituation, Scorer, Primary, Secondary, GF1, GF2, GF3, GF4, GF5, GA1, GA2, GA3, GA4, GA5
+
+*Issues with league supplied scorer sheets for GameID's:
+- WHL: 1009871, 1010377, 1010576, 1010833, 1010851 (non-existant player marked as on-ice for goal event)
